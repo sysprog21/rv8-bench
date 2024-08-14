@@ -396,7 +396,7 @@
 #include <string.h>
 #include <sys/time.h>
 
-#define LOOPS 10000000
+#define LOOPS 500000000
 
 char Version[] = "1.1-mc";
 
@@ -519,7 +519,7 @@ void Proc0()
     printf("Dhrystone(%s), %ld passes, %ld microseconds, %ld DMIPS\n", Version,
            (unsigned long) LOOPS, benchtime,
            /* overflow free division by VAX DMIPS value (1757) */
-           (LOOPS * 71) / (benchtime >> 3));
+           (long) ((((double) LOOPS / (double) (benchtime)) * 1e6) / 1757));
 }
 
 void Proc1(RecordPtr PtrParIn)

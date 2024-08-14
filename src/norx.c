@@ -469,7 +469,7 @@ int main()
                                     0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B,
                                     0x0C, 0x0D, 0x0E, 0x0F};
     static const uint8_t nonce[8] = {0x0, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7};
-    static const size_t DATA_SIZE = 32 * 1024 * 1024;
+    static const size_t DATA_SIZE = 1024 * 1024 * 1024;
     uint8_t tag[16];
 
     uint8_t *pt1 = malloc(DATA_SIZE);

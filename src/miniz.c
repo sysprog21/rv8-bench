@@ -9829,7 +9829,7 @@ mz_bool mz_zip_end(mz_zip_archive *pZip)
 
 #endif /*#ifndef MINIZ_NO_ARCHIVE_APIS*/
 
-static const size_t DATA_SIZE = 8 * 1024 * 1024;
+static const size_t DATA_SIZE = 128 * 1024 * 1024;
 
 int main()
 {

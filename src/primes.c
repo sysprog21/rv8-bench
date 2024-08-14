@@ -9,7 +9,7 @@
 
 int main()
 {
-    int limit = 33333333;
+    int limit = 222222222;
     size_t primes_size = ((limit >> 6) + 1) * sizeof(uint64_t);
     uint64_t *primes = (uint64_t *) malloc(primes_size);
     int64_t p = 2, sqrt_limit = (int64_t) sqrt(limit);
