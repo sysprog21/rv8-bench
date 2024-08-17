@@ -2,8 +2,35 @@
 # rv8-bench
 #
 
-CFLAGS = -fPIE -g
-LDFLAGS = -static
+BINDIR ?= bin
+
+CC ?= gcc
+CFLAGS += -O2
+LDFLAGS += -lm
+
+TESTBENCHES := \
+    aes \
+	dhrystone \
+	miniz \
+	norx \
+	primes \
+	qsort \
+	sha512
+
+SHELL_HACK := $(shell mkdir -p $(abspath $(BINDIR)))
+
+.PHONY: all clean
+
+all: $(foreach tb,$(TESTBENCHES),$(BINDIR)/$(tb))
+
+$(BINDIR)/%: src/%.c
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
+clean:
+	$(RM) $(foreach tb,$(TESTBENCHES),$(abspath $(BINDIR))/$(tb))
+
+# CFLAGS = -fPIE -g
+# LDFLAGS = -static
 
 RV32 = riscv32-linux-musl-
 RV64 = riscv64-linux-musl-
@@ -26,11 +53,11 @@ O3_PROGS = $(addsuffix .O3, $(ALL_PROGS)) $(addsuffix .O3.stripped, $(ALL_PROGS)
 O2_PROGS = $(addsuffix .O2, $(ALL_PROGS)) $(addsuffix .O2.stripped, $(ALL_PROGS))
 OS_PROGS = $(addsuffix .Os, $(ALL_PROGS)) $(addsuffix .Os.stripped, $(ALL_PROGS))
 
-all: $(O3_PROGS) $(O2_PROGS) $(OS_PROGS) | npm
+# all: $(O3_PROGS) $(O2_PROGS) $(OS_PROGS) | npm
 
 npm: ; npm install
 
-clean: ; rm -fr bin
+# clean: ; rm -fr bin
 
 bin/riscv32/%.O3: src/%.c
 	@echo CC $@ ; mkdir -p $(@D) ; $(RV32)gcc $(LDFLAGS) -O3 $(CFLAGS) $< -o $@
