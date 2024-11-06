@@ -61,32 +61,32 @@ extern const u8 rcons[10];
 #define TE0(i) Te0[((i) >> 24) & 0xff]
 #define TE1(i) Te1[((i) >> 16) & 0xff]
 #define TE2(i) Te2[((i) >> 8) & 0xff]
-#define TE3(i) Te3[(i) &0xff]
+#define TE3(i) Te3[(i) & 0xff]
 #define TE41(i) (Te4[((i) >> 24) & 0xff] & 0xff000000)
 #define TE42(i) (Te4[((i) >> 16) & 0xff] & 0x00ff0000)
 #define TE43(i) (Te4[((i) >> 8) & 0xff] & 0x0000ff00)
-#define TE44(i) (Te4[(i) &0xff] & 0x000000ff)
+#define TE44(i) (Te4[(i) & 0xff] & 0x000000ff)
 #define TE421(i) (Te4[((i) >> 16) & 0xff] & 0xff000000)
 #define TE432(i) (Te4[((i) >> 8) & 0xff] & 0x00ff0000)
-#define TE443(i) (Te4[(i) &0xff] & 0x0000ff00)
+#define TE443(i) (Te4[(i) & 0xff] & 0x0000ff00)
 #define TE414(i) (Te4[((i) >> 24) & 0xff] & 0x000000ff)
 #define TE411(i) (Te4[((i) >> 24) & 0xff] & 0xff000000)
 #define TE422(i) (Te4[((i) >> 16) & 0xff] & 0x00ff0000)
 #define TE433(i) (Te4[((i) >> 8) & 0xff] & 0x0000ff00)
-#define TE444(i) (Te4[(i) &0xff] & 0x000000ff)
+#define TE444(i) (Te4[(i) & 0xff] & 0x000000ff)
 #define TE4(i) (Te4[(i)] & 0x000000ff)
 #define TD0(i) Td0[((i) >> 24) & 0xff]
 #define TD1(i) Td1[((i) >> 16) & 0xff]
 #define TD2(i) Td2[((i) >> 8) & 0xff]
-#define TD3(i) Td3[(i) &0xff]
+#define TD3(i) Td3[(i) & 0xff]
 #define TD41(i) (Td4[((i) >> 24) & 0xff] & 0xff000000)
 #define TD42(i) (Td4[((i) >> 16) & 0xff] & 0x00ff0000)
 #define TD43(i) (Td4[((i) >> 8) & 0xff] & 0x0000ff00)
-#define TD44(i) (Td4[(i) &0xff] & 0x000000ff)
-#define TD0_(i) Td0[(i) &0xff]
-#define TD1_(i) Td1[(i) &0xff]
-#define TD2_(i) Td2[(i) &0xff]
-#define TD3_(i) Td3[(i) &0xff]
+#define TD44(i) (Td4[(i) & 0xff] & 0x000000ff)
+#define TD0_(i) Td0[(i) & 0xff]
+#define TD1_(i) Td1[(i) & 0xff]
+#define TD2_(i) Td2[(i) & 0xff]
+#define TD3_(i) Td3[(i) & 0xff]
 #define RCON(i) rcon[(i)]
 
 #define GETU32(pt)                                                          \
@@ -992,7 +992,7 @@ int main()
 
     /* create test pattern */
     char c = 0x01;
-    for (size_t j = 0; j < DATA_SIZE; j += sizeof(int)) {
+    for (size_t j = 0; j < DATA_SIZE; j++) {
         pt1[j] = (c ^= c * 7);
     }
 
